@@ -58,7 +58,7 @@ class IgnoreCommand
     unless IO.read(gitignore_global).include?(breadcrumb)
       WB::Shell.append(gitignore_global) do |file|
         file.puts("\n# ignore project notes by #{breadcrumb}")
-        file.puts("/.note/")
+        file.puts(%(/#{WB.config.project_root}/))
       end
     end
   end
