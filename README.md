@@ -1,6 +1,14 @@
 # WB -- Software Engineers's Workbook
 
-[Background reading: Lab Notebooking for the Software Engineer](https://blog.nelhage.com/2010/06/lab-notebooking-for-the-software-engineer/)
+[Background reading: Lab Notebooking for the Software Engineer](https://blog.nelhage.com/2010/06/lab-notebooking-for-the-software-engineer/):
+
+- Only append to the workbook
+- [Keep automatic backups](https://github.com/JuanitoFatas/wb/issues/1)
+- What to note?
+  - Measurement
+  - Non-trival search and found something
+  - Explicit design decision
+  - Whenever you wish you had written down
 
 ## Installation
 
