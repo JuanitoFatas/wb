@@ -26,7 +26,14 @@ workbook:
     note_folder: ".note"
 ```
 
-To open a workbook:
+and add following to `~/.gitignore_global`:
+
+```
+# ignore project notes by https://github.com/juanitofatas/wb
+/.note/
+```
+
+To open a global workbook:
 
 ```
 wb
@@ -38,12 +45,14 @@ Inside working hour `wb` equals to:
 
 ```
 wb work
+# opens "~/Dropbox/workbooks/work.md
 ```
 
 Outside working hour `wb` equals to:
 
 ```
 wb personal
+# opens "~/Dropbox/workbooks/personal.md
 ```
 
 Create a new workbook in the project you are working:
