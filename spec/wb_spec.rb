@@ -1,5 +1,5 @@
-RSpec.describe Wb do
+RSpec.describe WB do
   it "has a version number" do
-    expect(Wb::VERSION).not_to be nil
+    expect(WB::VERSION).not_to be nil
   end
 end

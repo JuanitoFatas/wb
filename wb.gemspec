@@ -5,7 +5,7 @@ require "wb/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "wb"
-  spec.version       = Wb::VERSION
+  spec.version       = WB::VERSION
   spec.authors       = ["Juanito Fatas"]
   spec.email         = ["katehuang0320@gmail.com"]
 
@@ -25,5 +25,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "pry"
   spec.add_development_dependency "rspec", "~> 3.0"
 end

@@ -1,4 +1,185 @@
 #!/usr/bin/env ruby
 
+require "bundler/setup"
+require "wb"
+
 # Exit cleanly from an early interrupt
 Signal.trap("INT") { abort }
+
+class HelpCommand
+  def self.name
+    @name ||= "help"
+  end
+
+  def run(*)
+    $stdout.puts(<<~HELP)
+      wb init       Initialize wb config yaml file
+      wb ignore     Add {project.note_folder} to global gitignore
+      wb setup      wb init + wb ignore
+
+      wb config     Open wb config file
+
+      wb            Open global notebook based on {working_hours}
+      wb personal   Open global personal notebook
+      wb work       Open global work notebook
+
+      wb open       Open from all notes in {project.note_folder} and global notes
+      wb open NAME  Open note by NAME
+
+      wb new        Create/Open note of name {date_format}.{extension} under {project.note_folder}
+      wb new NAME   Create note by {date_format}.NAME under {project.note_folder}
+    HELP
+  end
+end
+
+class InitCommand
+  def self.name
+    @name ||= "init"
+  end
+
+  def run(*)
+    unless File.exist?(WB.default_config)
+      File.open(WB.default_config, "w") do |file|
+        file.puts WB::ConfigTemplate.content
+      end
+      $stdout.puts %Q(#{WB.default_config} created!)
+    end
+  end
+end
+
+class IgnoreCommand
+  def self.name
+    @name ||= "ignore"
+  end
+
+  def run(*)
+    gitignore_global = File.join(Etc.getpwuid.dir, ".gitignore_global")
+
+    unless IO.read(gitignore_global).include?(breadcrumb)
+      WB::Shell.append(gitignore_global) do |file|
+        file.puts("\n# ignore project notes by #{breadcrumb}")
+        file.puts("/.note/")
+      end
+    end
+  end
+
+  private
+
+  def breadcrumb
+    "https://github.com/juanitofatas/wb"
+  end
+end
+
+class SetupCommand
+  def self.name
+    @name ||= "setup"
+  end
+
+  def run(*)
+    $stdout.puts "wb init"
+    InitCommand.new.run
+
+    $stdout.puts "wb ignore"
+    IgnoreCommand.new.run
+
+    $stdout.puts "setup completed."
+  end
+end
+
+class DefaultCommand
+  def self.name
+    @name ||= ""
+  end
+
+  def run(*)
+    if WB::Day.working?
+      WB::Shell.open_file(WB.config.work_workbook)
+    else
+      WB::Shell.open_file(WB.config.personal_workbook)
+    end
+  end
+end
+
+class PersonalCommand
+  def self.name
+    @name ||= "personal"
+  end
+
+  def run(*)
+    WB::Shell.open_file(WB.config.personal_workbook)
+  end
+end
+
+class WorkCommand
+  def self.name
+    @name ||= "work"
+  end
+
+  def run(*)
+    WB::Shell.open_file(WB.config.work_workbook)
+  end
+end
+
+class OpenCommand
+  def self.name
+    @name ||= "open"
+  end
+
+  def run(filename)
+    if filename
+      note = WB::Note.find_note(filename)
+      if note
+        WB::Shell.open_file(note.path)
+      else
+        $stdout.puts "Cannot find #{filename}, please double check."
+      end
+    else
+      WB::Note.list_notes
+      note_number = WB::Shell.getc
+      note = WB::Note.find_by_number(note_number)
+      if note
+        WB::Shell.open_file(note.path)
+      else
+        $stdout.puts "Cannot pick #{note_number}, please double check."
+      end
+    end
+  end
+end
+
+class NewCommand
+  def self.name
+    @name ||= "new"
+  end
+
+  def run(name)
+    filename = WB::Project.new_note(name)
+    unless File.exist?(filename)
+      WB::Shell.create_file(filename)
+    end
+    WB::Shell.open_file(filename)
+  end
+end
+
+class ConfigCommand
+  def self.name
+    @name ||= "config"
+  end
+
+  def run(*)
+    WB::Shell.open_file(WB.config.path)
+  end
+end
+
+commands = [
+  HelpCommand,
+  InitCommand,
+  IgnoreCommand,
+  SetupCommand,
+  DefaultCommand,
+  PersonalCommand,
+  WorkCommand,
+  OpenCommand,
+  NewCommand,
+  ConfigCommand,
+]
+WB::CLI.new(commands).run(arguments: ARGV)
