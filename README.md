@@ -1,5 +1,7 @@
 # WB -- Software Engineers's Workbook
 
+[![Build Status](https://travis-ci.org/JuanitoFatas/wb.svg?branch=master)](https://travis-ci.org/JuanitoFatas/wb)
+
 [Background reading: Lab Notebooking for the Software Engineer](https://blog.nelhage.com/2010/06/lab-notebooking-for-the-software-engineer/):
 
 - Only append to the workbook
