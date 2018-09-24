@@ -6,6 +6,16 @@ require "wb"
 # Exit cleanly from an early interrupt
 Signal.trap("INT") { abort }
 
+class VersionCommand
+  def self.name
+    @name ||= "version"
+  end
+
+  def run(*)
+    $stdout.puts WB::VERSION
+  end
+end
+
 class HelpCommand
   def self.name
     @name ||= "help"
@@ -171,6 +181,7 @@ class ConfigCommand
 end
 
 commands = [
+  VersionCommand,
   HelpCommand,
   InitCommand,
   IgnoreCommand,
