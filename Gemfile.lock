@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wb (1.0.0)
+    wb (1.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -38,4 +38,4 @@ DEPENDENCIES
   wb!
 
 BUNDLED WITH
-   1.16.2
+   1.16.5
