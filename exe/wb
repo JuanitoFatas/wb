@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
+require "bundler"
 require "wb"
 
 # Exit cleanly from an early interrupt
