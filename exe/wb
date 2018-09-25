@@ -23,6 +23,8 @@ class HelpCommand
 
   def run(*)
     $stdout.puts(<<~HELP)
+      wb version    Prints current version of wb
+
       wb init       Initialize wb config yaml file
       wb ignore     Add {project.note_folder} to global gitignore
       wb setup      wb init + wb ignore
