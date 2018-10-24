@@ -10,12 +10,12 @@ module WB
     end
 
     def self.mkdir_p_touch(path)
-      directory = File.dirname(path)
+      directories = File.dirname(path)
       filename = File.basename(path)
-      unless File.exist?(directory)
-        FileUtils.mkdir_p(directory)
+      unless File.exist?(directories)
+        FileUtils.mkdir_p(directories)
       end
-      FileUtils.touch(filename)
+      FileUtils.touch(path)
       $stdout.puts "#{path} created"
     end
 
