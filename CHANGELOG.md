@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unrelease
+
+- Fixed `LoadError` from executable by adding `lib` to load paths
+
 ## 1.0.3
 
 - Fixed `LoadError` from executable
