@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "fileutils"
+
 module WB
   class Shell
     def self.run(*commands)

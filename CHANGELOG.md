@@ -3,6 +3,7 @@
 ## Unrelease
 
 - Fixed `LoadError` from executable by adding `lib` to load paths
+- Fixed missing require of FileUtils in shell.rb
 
 ## 1.0.3
 
