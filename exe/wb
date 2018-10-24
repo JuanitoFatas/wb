@@ -166,11 +166,17 @@ class NewCommand
   end
 
   def run(name)
-    filename = WB::Project.new_note(name)
+    filename = WB::Project.new_note sanitize_filename(name)
+
     unless File.exist?(filename)
       WB::Shell.create_file(filename)
     end
+
     WB::Shell.open_file(filename)
+  end
+
+  def sanitize_filename(name)
+    name.tr("/", "-")
   end
 end
 
@@ -197,4 +203,5 @@ commands = [
   NewCommand,
   ConfigCommand,
 ]
+
 WB::CLI.new(commands).run(arguments: ARGV)
