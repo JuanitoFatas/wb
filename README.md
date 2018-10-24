@@ -165,10 +165,9 @@ Feedback and improvement are welcome!
 
 ## License, Contributor's Guidelines, Code of Conduct, and Credits
 
-- MIT license
+- [MIT license](LICENSE.md)
 - [Moya Contributors Guidelines][moya] which TLDR: means we give out push access easily and often.
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 - Notebook idea by [Nelson Elhage](https://blog.nelhage.com/about/)
 
-[mit]: https://opensource.org/licenses/MIT
 [moya]: https://github.com/Moya/contributors
