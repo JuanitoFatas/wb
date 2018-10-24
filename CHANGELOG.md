@@ -2,6 +2,8 @@
 
 ## Unrelease
 
+## 1.1.0
+
 - Fixed `LoadError` from executable by adding `lib` to load paths
 - Fixed missing require of FileUtils in shell.rb
 - Fixed Shell.mkdir_p_touch
