@@ -171,3 +171,7 @@ Feedback and improvement are welcome!
 - Notebook idea by [Nelson Elhage](https://blog.nelhage.com/about/)
 
 [moya]: https://github.com/Moya/contributors
+
+## Related
+
+- [Guidelines for Keeping a Laboratory Record](http://www.ruf.rice.edu/~bioslabs/tools/notebook/notebook.html)
